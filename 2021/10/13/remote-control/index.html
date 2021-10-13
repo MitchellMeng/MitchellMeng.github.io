@@ -13,9 +13,10 @@
     
 
     
-        <meta name="description" content="DescriptionIf you think that the information in Excel files is hard to read, you can try this.This program will help you convert 
+        <meta name="description" content="Description
+Server
 
-Codehere is the cod"/>
+import socketimport argparsefrom threading import Threadimport tkinter as tkimport structimport sysimport pyautoguiimport timeimpo"/>
     
 
     <!--Author-->
@@ -25,14 +26,15 @@ Codehere is the cod"/>
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="Converting Excel files to Word documents"/>
+        <meta property="og:title" content="Remote control"/>
     
 
     <!--Open Graph Description-->
     
-        <meta property="og:description" content="DescriptionIf you think that the information in Excel files is hard to read, you can try this.This program will help you convert 
+        <meta property="og:description" content="Description
+Server
 
-Codehere is the cod"/>
+import socketimport argparsefrom threading import Threadimport tkinter as tkimport structimport sysimport pyautoguiimport timeimpo"/>
     
 
     <!--Open Graph Site Name-->
@@ -59,7 +61,7 @@ Codehere is the cod"/>
 
     <!-- Title -->
     
-    <title>Converting Excel files to Word documents - Hexo</title>
+    <title>Remote control - Hexo</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
@@ -171,13 +173,13 @@ Codehere is the cod"/>
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
-                    <h1>Converting Excel files to Word documents</h1>
+                    <h1>Remote control</h1>
                     
                     <span class="meta">
                         <!-- Date and Author -->
                         
                         
-                            2021-09-19
+                            2021-10-13
                         
                     </span>
                 </div>
@@ -199,12 +201,19 @@ Codehere is the cod"/>
 
             <!-- Post Main Content -->
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <h1 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h1><p>If you think that the information in Excel files is hard to read, you can try this.<br>This program will help you convert </p>
-<hr>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><p>here is the code</p>
-<font size=4>
+                <h1 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h1><hr>
+<h2 id="Server"><a href="#Server" class="headerlink" title="Server"></a>Server</h2><font size=4>
 
-<p>import xlrd<br>from docx import Document<br>filename_before = str(input(“which excel file do you want to transfer into word document?”))<br>filename_before = filename_before + “.xlsx”<br>excel = xlrd.open_workbook(filename_before)<br>name = excel.sheet_by_index(0)<br>word = Document()<br>for a in range(1,21):<br>&emsp;&emsp;for i in range(6,15):<br>&emsp;&emsp;&emsp;&emsp;word.add_paragraph(name.cell_value(0,i))<br>&emsp;&emsp;&emsp;&emsp;word.add_paragraph(name.cell_value(a,i))<br>&emsp;&emsp;&emsp;&emsp;if name.cell_value(a,i) == “”:<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;break<br>&emsp;&emsp;word.add_paragraph(“\n”)<br>&emsp;&emsp;word.add_paragraph(“\n”)<br>&emsp;&emsp;word.add_paragraph(“\n”)<br>filename_after = str(input(“what name do you want to give to your new file?”))<br>filename_after = filename_after + “.docx”<br>word.save(filename_after)</p>
+<p>import socket<br>import argparse<br>from threading import Thread<br>import tkinter as tk<br>import struct<br>import sys<br>import pyautogui<br>import time<br>import pyWinhook<br>import pythoncom<br>import os<br>import multiprocessing</p>
+<p>global mouseC<br>mouseC = “”<br>socketList = []<br>def deal_data(conn, addr):<br>&emsp;&emsp;print (‘Accept new connection from {0}’.format(addr))<br>&emsp;&emsp;# conn.settimeout(500)<br>&emsp;&emsp;# 收到请求后的回复<br>&emsp;&emsp;conn.send(“Hi, Welcome to the Server”.encode(“utf-8”))<br>&emsp;&emsp;while 1:<br>&emsp;&emsp;&emsp;&emsp;# 申请相同大小的空间存放发送过来的文件名与文件大小信息<br>&emsp;&emsp;&emsp;&emsp;fileinfo_size = struct.calcsize(‘128sl’)<br>&emsp;&emsp;&emsp;&emsp;# 接收文件名与文件大小信息<br>&emsp;&emsp;&emsp;&emsp;buf = conn.recv(fileinfo_size)<br>&emsp;&emsp;&emsp;&emsp;# 判断是否接收到文件头信息<br>&emsp;&emsp;&emsp;&emsp;if buf:<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;# 获取文件名和文件大小<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;filename, filesize = struct.unpack(‘128sl’, buf)<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;fn = filename.strip(b’\00’)<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;fn = fn.decode()<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;print (‘file new name is {0}, filesize is {1}’.format(str(fn),filesize))</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;recvd_size = 0  # 定义已接收文件的大小<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;# 存储在该脚本所在目录下面<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;fp = open(‘./‘ + str(fn), ‘wb’)<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;print (‘start receiving…’)</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;# 将分批次传输的二进制流依次写入到文件<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;while not recvd_size == filesize:<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;if filesize - recvd_size &gt; 1024:<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;data = conn.recv(1024)<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;recvd_size += len(data)<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;else:<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;data = conn.recv(filesize - recvd_size)<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;recvd_size = filesize<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;fp.write(data)<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;fp.close()<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;print (‘end receive…’)<br>&emsp;&emsp;&emsp;&emsp;break</p>
+<p>#Send command<br>def sendCmd(cmd):<br>&emsp;&emsp;print(“Sending command……”)<br>&emsp;&emsp;socketList[0].send(cmd.encode(‘UTF-8’))<br>&emsp;&emsp;print(“Sending successfully”)</p>
+<p>def sendData():<br>&emsp;&emsp;def onMouseEvent(event):<br>&emsp;&emsp;&emsp;&emsp;x_size, y_size = pyautogui.size()<br>&emsp;&emsp;&emsp;&emsp;x,y = pyautogui.position()<br>&emsp;&emsp;&emsp;&emsp;x_pos = str(x).rjust(4)<br>&emsp;&emsp;&emsp;&emsp;y_pos = str(y).rjust(4)<br>&emsp;&emsp;&emsp;&emsp;x_relative = int(x_pos) / x_size<br>&emsp;&emsp;&emsp;&emsp;y_relative = int(y_pos) / y_size<br>&emsp;&emsp;&emsp;&emsp;pos = “,” + str(x_relative) + “,” + str(y_relative)<br>&emsp;&emsp;&emsp;&emsp;if event.MessageName == “mouse left down”:<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;mouseC = “,” + “LD” + pos<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;socketList[0].send(mouseC.encode(‘UTF-8’))<br>&emsp;&emsp;&emsp;&emsp;elif event.MessageName == “mouse left up”:<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;mouseC = “,” + “LU” + pos<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;socketList[0].send(mouseC.encode(‘UTF-8’))<br>&emsp;&emsp;&emsp;&emsp;elif event.MessageName == “mouse right down”:<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;mouseC = “,” + “RD” + pos<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;socketList[0].send(mouseC.encode(‘UTF-8’))<br>&emsp;&emsp;&emsp;&emsp;elif event.MessageName == “mouse right up”:<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;mouseC = “,” + “RU” + pos<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;socketList[0].send(mouseC.encode(‘UTF-8’))<br>&emsp;&emsp;&emsp;&emsp;else:<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;mouseC = “,” + pos<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;socketList[0].send(mouseC.encode(‘UTF-8’))<br>&emsp;&emsp;&emsp;&emsp;return True<br>&emsp;&emsp;if _<em>_<em>name</em></em>__ == ‘_<em>_<em>main</em></em>__’:<br>&emsp;&emsp;&emsp;&emsp;hm = pyWinhook.HookManager()<br>&emsp;&emsp;&emsp;&emsp;hm.MouseAll = onMouseEvent<br>&emsp;&emsp;&emsp;&emsp;hm.HookMouse()<br>&emsp;&emsp;&emsp;&emsp;pythoncom.PumpMessages()</p>
+<p>def generate():<br>&emsp;&emsp;os.system(“generateWindow.exe”)</p>
+<p>def main():<br>&emsp;&emsp;p1 = multiprocessing.Process(target=generate)<br>&emsp;&emsp;s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)<br>&emsp;&emsp;s.bind((‘0.0.0.0’, 58868))<br>&emsp;&emsp;s.listen(1024)<br>&emsp;&emsp;conn, addr = s.accept()<br>&emsp;&emsp;socketList.append(conn)<br>&emsp;&emsp;print(“There are 1 client connected”)<br>&emsp;&emsp;while True:<br>&emsp;&emsp;&emsp;&emsp;print(‘=’ * 50)<br>&emsp;&emsp;&emsp;&emsp;cmd_str = input(“Please input command:”)<br>&emsp;&emsp;&emsp;&emsp;sendCmd(cmd_str)<br>&emsp;&emsp;&emsp;&emsp;if cmd_str[0] == “m” and cmd_str[1] == “o”:<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;p1.start()<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;while True:<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;sendData()<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;time.sleep(0.02)</p>
+<p>&emsp;&emsp;&emsp;&emsp;if cmd_str[0] == “s” and cmd_str[1] == “e”:<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;deal_data(conn, addr)</p>
+<p>if _<em>_<em>name</em></em>__ == ‘_<em>_<em>main</em></em>__’:<br>&emsp;&emsp;main()</p>
 </font>
 
                 
