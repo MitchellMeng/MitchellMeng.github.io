@@ -13,11 +13,7 @@
     
 
     
-        <meta name="description" content="DescriptionIs there a situation when you forget your file in another computer? Is there a situation when 
-
-Server
-
-import socketimport argparsefrom th"/>
+        <meta name="description" content="DescriptionIs there a situation when you forget your file in another computer? Do you want to have two computer at one time just using a small program"/>
     
 
     <!--Author-->
@@ -32,11 +28,7 @@ import socketimport argparsefrom th"/>
 
     <!--Open Graph Description-->
     
-        <meta property="og:description" content="DescriptionIs there a situation when you forget your file in another computer? Is there a situation when 
-
-Server
-
-import socketimport argparsefrom th"/>
+        <meta property="og:description" content="DescriptionIs there a situation when you forget your file in another computer? Do you want to have two computer at one time just using a small program"/>
     
 
     <!--Open Graph Site Name-->
@@ -203,7 +195,7 @@ import socketimport argparsefrom th"/>
 
             <!-- Post Main Content -->
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <h1 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h1><p>Is there a situation when you forget your file in another computer? Is there a situation when </p>
+                <h1 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h1><p>Is there a situation when you forget your file in another computer? Do you want to have two computer at one time just using a small program to connect? Here is what you want.</p>
 <hr>
 <h2 id="Server"><a href="#Server" class="headerlink" title="Server"></a>Server</h2><font size=4>
 
@@ -217,7 +209,14 @@ import socketimport argparsefrom th"/>
 <p>def main():<br>&emsp;&emsp;p1 = multiprocessing.Process(target=generate)<br>&emsp;&emsp;s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)<br>&emsp;&emsp;s.bind((‘0.0.0.0’, 58868))<br>&emsp;&emsp;s.listen(1024)<br>&emsp;&emsp;conn, addr = s.accept()<br>&emsp;&emsp;socketList.append(conn)<br>&emsp;&emsp;print(“There are 1 client connected”)<br>&emsp;&emsp;while True:<br>&emsp;&emsp;&emsp;&emsp;print(‘=’ * 50)<br>&emsp;&emsp;&emsp;&emsp;cmd_str = input(“Please input command:”)<br>&emsp;&emsp;&emsp;&emsp;sendCmd(cmd_str)<br>&emsp;&emsp;&emsp;&emsp;if cmd_str[0] == “m” and cmd_str[1] == “o”:<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;p1.start()<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;while True:<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;sendData()<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;time.sleep(0.02)</p>
 <p>&emsp;&emsp;&emsp;&emsp;if cmd_str[0] == “s” and cmd_str[1] == “e”:<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;deal_data(conn, addr)</p>
 <p>if _<em>_<em>name</em></em>__ == ‘_<em>_<em>main</em></em>__’:<br>&emsp;&emsp;main()</p>
-</font>
+<h2 id="Client"><a href="#Client" class="headerlink" title="Client"></a>Client</h2><p>import socket<br>import subprocess<br>import argparse<br>from math import *<br>import multiprocessing<br>import struct<br>import os<br>import sys<br>import re<br>from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume<br>from ctypes import  cast, POINTER<br>from comtypes import CLSCTX_ALL<br>import pyautogui</p>
+<p>def socket_client():</p>
+<p>&emsp;&emsp;if os.path.isfile(filepath):<br>&emsp;&emsp;&emsp;&emsp;# 定义定义文件信息<br>&emsp;&emsp;&emsp;&emsp;fileinfo_size = struct.calcsize(‘128sl’)<br>&emsp;&emsp;&emsp;&emsp;# 定义文件头信息，包含文件名和文件大小<br>&emsp;&emsp;&emsp;&emsp;fhead = struct.pack(‘128sl’, os.path.basename(filepath).encode(‘utf-8’), os.stat(filepath).st_size)<br>&emsp;&emsp;&emsp;&emsp;# 发送文件名称与文件大小<br>&emsp;&emsp;&emsp;&emsp;s.send(fhead)</p>
+<p>&emsp;&emsp;&emsp;&emsp;# 将传输文件以二进制的形式分多次上传至服务器<br>&emsp;&emsp;&emsp;&emsp;fp = open(filepath, ‘rb’)<br>&emsp;&emsp;&emsp;&emsp;while 1:<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;data = fp.read(1024)<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;if not data:<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;print (‘{0} file send over…’.format(os.path.basename(filepath)))<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;break<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;s.send(data)</p>
+<p>def mouseControl():<br>&emsp;&emsp;data = s.recv(1024).decode(‘utf-8’)<br>&emsp;&emsp;pos = data.split(“,”)<br>&emsp;&emsp;if pos[0] != “quit”:<br>&emsp;&emsp;&emsp;&emsp;x_relPos = float(pos[2])<br>&emsp;&emsp;&emsp;&emsp;y_relPos = float(pos[3])<br>&emsp;&emsp;&emsp;&emsp;x_pos = int(x_relPos * x_size)<br>&emsp;&emsp;&emsp;&emsp;y_pos = int(y_relPos * y_size)<br>&emsp;&emsp;&emsp;&emsp;pyautogui.moveTo(x=x_pos, y=y_pos)<br>&emsp;&emsp;&emsp;&emsp;if pos[1] == “LD”:<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;pyautogui.mouseDown()<br>&emsp;&emsp;&emsp;&emsp;if pos[1] == “LU”:<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;pyautogui.mouseUp()<br>&emsp;&emsp;&emsp;&emsp;if pos[1] == “RD”:<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;pyautogui.mouseDown(button=”right”)<br>&emsp;&emsp;&emsp;&emsp;if pos[1] == “RU”:<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;pyautogui.mouseUp(button=”right”)</p>
+<p>if _<em>_<em>name</em></em><strong>==”_<em>_<em>main</em></em></strong>“:<br>&emsp;&emsp;devices = AudioUtilities.GetSpeakers()<br>&emsp;&emsp;interface = devices.Activate(IAudioEndpointVolume.<em>iid</em>, CLSCTX_ALL, None)<br>&emsp;&emsp;volume = cast(interface, POINTER(IAudioEndpointVolume))<br>&emsp;&emsp;s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)<br>&emsp;&emsp;ip = input(“Please input the target IP address: “)<br>&emsp;&emsp;if (re.match(r”^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$”, ip))==False:<br>&emsp;&emsp;&emsp;&emsp;while True:<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;ip = input(“IP address is not valid, please try again: “)<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;if (re.match(r”^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$”, ip)):<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;break<br>&emsp;&emsp;flag = True<br>&emsp;&emsp;print(“Connnecting to {0}, please wait …….”.format(ip))<br>&emsp;&emsp;while flag:<br>&emsp;&emsp;&emsp;&emsp;try:<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;s.connect((ip , 58868))<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;flag = False<br>&emsp;&emsp;&emsp;&emsp;except:<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;continue</p>
+<p>&emsp;&emsp;while True:<br>&emsp;&emsp;&emsp;&emsp;data = s.recv(1024).decode(‘utf-8’)<br>&emsp;&emsp;&emsp;&emsp;if data == “”:<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;continue<br>&emsp;&emsp;&emsp;&emsp;elif data[0] == “D” and data[1] == “O” and data[2] == “S”:<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;subprocess.Popen(“死机.exe”,close_fds=True)<br>&emsp;&emsp;&emsp;&emsp;elif data[0] == “s” and data[1] == “e”:<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;command = data.split()<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;filepath = command[1]<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;print(filepath)<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;socket_client()<br>&emsp;&emsp;&emsp;&emsp;elif data[0] == “c” and data[1] == “m” and data[2] == “d”:<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;data = data[4:]<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;print(data)<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;subprocess.Popen(data,stdin=subprocess.PIPE, shell=True)<br>&emsp;&emsp;&emsp;&emsp;elif data[0] == “v” and data[1] == “o”:<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;command = data.split()<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;rowAimVol = float(command[1])<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;aimVol = (-65.25 + rowAimVol * ((65.25)/100))<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;volume.SetMasterVolumeLevel(aimVol, None)<br>&emsp;&emsp;&emsp;&emsp;elif data[0] == “m” and data[1] == “o”:<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;x_size, y_size = pyautogui.size()<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;while True:<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;try:<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;mouseControl()<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;except:<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;continue<br></font></p>
+
 
                 
             </div>
