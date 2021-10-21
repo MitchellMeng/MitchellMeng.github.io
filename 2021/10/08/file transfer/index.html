@@ -13,9 +13,7 @@
     
 
     
-        <meta name="description" content="DescriptionIf you think that the information in Excel files is hard to read, you can try this.This program will help you convert 
-
-Codehere is the cod"/>
+        <meta name="description" content="DescriptionIf you think that the information in Excel files is hard to read, you can try this.This program will help you convert Excel files to Word d"/>
     
 
     <!--Author-->
@@ -30,9 +28,7 @@ Codehere is the cod"/>
 
     <!--Open Graph Description-->
     
-        <meta property="og:description" content="DescriptionIf you think that the information in Excel files is hard to read, you can try this.This program will help you convert 
-
-Codehere is the cod"/>
+        <meta property="og:description" content="DescriptionIf you think that the information in Excel files is hard to read, you can try this.This program will help you convert Excel files to Word d"/>
     
 
     <!--Open Graph Site Name-->
@@ -199,12 +195,11 @@ Codehere is the cod"/>
 
             <!-- Post Main Content -->
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <h1 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h1><p>If you think that the information in Excel files is hard to read, you can try this.<br>This program will help you convert </p>
+                <h1 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h1><p>If you think that the information in Excel files is hard to read, you can try this.<br>This program will help you convert Excel files to Word documents and remain the pattern.</p>
 <hr>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><p>here is the code</p>
-<font size=4>
+<h2 id="Here-is-the-code"><a href="#Here-is-the-code" class="headerlink" title="Here is the code"></a>Here is the code</h2><font size=4>
 
-<p>import xlrd<br>from docx import Document<br>filename_before = str(input(“which excel file do you want to transfer into word document?”))<br>filename_before = filename_before + “.xlsx”<br>excel = xlrd.open_workbook(filename_before)<br>name = excel.sheet_by_index(0)<br>word = Document()<br>for a in range(1,21):<br>&emsp;&emsp;for i in range(6,15):<br>&emsp;&emsp;&emsp;&emsp;word.add_paragraph(name.cell_value(0,i))<br>&emsp;&emsp;&emsp;&emsp;word.add_paragraph(name.cell_value(a,i))<br>&emsp;&emsp;&emsp;&emsp;if name.cell_value(a,i) == “”:<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;break<br>&emsp;&emsp;word.add_paragraph(“\n”)<br>&emsp;&emsp;word.add_paragraph(“\n”)<br>&emsp;&emsp;word.add_paragraph(“\n”)<br>filename_after = str(input(“what name do you want to give to your new file?”))<br>filename_after = filename_after + “.docx”<br>word.save(filename_after)</p>
+<p>import xlrd<br>from docx import Document<br>filename_before = str(input(“which excel file do you want to transfer into word document?”))<br>filename_before = filename_before + “.xlsx”<br>excel = xlrd.open_workbook(filename_before)<br>sheet = excel.sheet_by_index(0)<br>word = Document()<br>start_col = int((input(“which collum you want to start with?”))<br>end_col = int((input(“which collum you want to end with?”)) + 1<br>start_row = int((input(“which row you want to start with?”))<br>end_row = int((input(“which row you want to end with?”)) + 1<br>for a in range(start_row, end_row):<br>&emsp;&emsp;for i in range(start_col, end_col):<br>&emsp;&emsp;&emsp;&emsp;word.add_paragraph(sheet.cell_value(a,i))<br>&emsp;&emsp;word.add_paragraph(“\n”)<br>&emsp;&emsp;word.add_paragraph(“\n”)<br>&emsp;&emsp;word.add_paragraph(“\n”)<br>filename_after = str(input(“what name do you want to give to your new file?”))<br>filename_after = filename_after + “.docx”<br>word.save(filename_after)</p>
 </font>
 
                 
