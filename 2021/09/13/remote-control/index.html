@@ -15,7 +15,7 @@
     
         <meta name="description" content="Description
 
-Is there a situation when you forget your file in another computer? Do you want to have two computer at one time just using a small progr"/>
+For this project, I created an application that allows the user to connect their client to a second remote computer. This is useful for a"/>
     
 
     <!--Author-->
@@ -32,7 +32,7 @@ Is there a situation when you forget your file in another computer? Do you want 
     
         <meta property="og:description" content="Description
 
-Is there a situation when you forget your file in another computer? Do you want to have two computer at one time just using a small progr"/>
+For this project, I created an application that allows the user to connect their client to a second remote computer. This is useful for a"/>
     
 
     <!--Open Graph Site Name-->
@@ -201,10 +201,10 @@ Is there a situation when you forget your file in another computer? Do you want 
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <h1 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h1><font size=4>
 
-<p>Is there a situation when you forget your file in another computer? Do you want to have two computer at one time just using a small program to connect?<br>Here is what you want.</p>
+<p>For this project, I created an application that allows the user to connect their client to a second remote computer. This is useful for a variety of situations. For example, are there times when you forget your file in another computer? Do you want to access two computers at one time by just using a small program to connect?<br>Here is what you want.</p>
 </font>
 
-<h2 id="Server"><a href="#Server" class="headerlink" title="Server"></a>Server</h2><font size=4>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><h3 id="Code-for-the-server-is-shown-below"><a href="#Code-for-the-server-is-shown-below" class="headerlink" title="Code for the server is shown below."></a>Code for the server is shown below.</h3><font size=4>
 
 <p>import socket<br>import argparse<br>from threading import Thread<br>import tkinter as tk<br>import struct<br>import sys<br>import pyautogui<br>import time<br>import pyWinhook<br>import pythoncom<br>import os<br>import multiprocessing</p>
 <p>global mouseC<br>mouseC = “”<br>socketList = []<br>def deal_data(conn, addr):<br>&emsp;&emsp;print (‘Accept new connection from {0}’.format(addr))<br>&emsp;&emsp;# conn.settimeout(500)<br>&emsp;&emsp;# reply when get the request<br>&emsp;&emsp;conn.send(“Hi, Welcome to the Server”.encode(“utf-8”))<br>&emsp;&emsp;while 1:<br>&emsp;&emsp;&emsp;&emsp;fileinfo_size = struct.calcsize(‘128sl’)<br>&emsp;&emsp;&emsp;&emsp;# receive the file name<br>&emsp;&emsp;&emsp;&emsp;buf = conn.recv(fileinfo_size)<br>&emsp;&emsp;&emsp;&emsp;# whether receive the heading message<br>&emsp;&emsp;&emsp;&emsp;if buf:<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;# get the filename and size<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;filename, filesize = struct.unpack(‘128sl’, buf)<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;fn = filename.strip(b’\00’)<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;fn = fn.decode()<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;print (‘file new name is {0}, filesize is {1}’.format(str(fn),filesize))</p>
@@ -216,7 +216,7 @@ Is there a situation when you forget your file in another computer? Do you want 
 <p>def main():<br>&emsp;&emsp;p1 = multiprocessing.Process(target=generate)<br>&emsp;&emsp;s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)<br>&emsp;&emsp;s.bind((‘0.0.0.0’, 58868))<br>&emsp;&emsp;s.listen(1024)<br>&emsp;&emsp;conn, addr = s.accept()<br>&emsp;&emsp;socketList.append(conn)<br>&emsp;&emsp;print(“There are 1 client connected”)<br>&emsp;&emsp;while True:<br>&emsp;&emsp;&emsp;&emsp;print(‘=’ * 50)<br>&emsp;&emsp;&emsp;&emsp;cmd_str = input(“Please input command:”)<br>&emsp;&emsp;&emsp;&emsp;sendCmd(cmd_str)<br>&emsp;&emsp;&emsp;&emsp;if cmd_str[0] == “m” and cmd_str[1] == “o”:<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;p1.start()<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;while True:<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;sendData()<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;time.sleep(0.02)</p>
 <p>&emsp;&emsp;&emsp;&emsp;if cmd_str[0] == “s” and cmd_str[1] == “e”:<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;deal_data(conn, addr)</p>
 <p>if _<em>_<em>name</em></em>__ == ‘_<em>_<em>main</em></em>__’:<br>&emsp;&emsp;main()</p>
-<h2 id="Client"><a href="#Client" class="headerlink" title="Client"></a>Client</h2><p>import socket<br>import subprocess<br>import argparse<br>from math import *<br>import multiprocessing<br>import struct<br>import os<br>import sys<br>import re<br>from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume<br>from ctypes import  cast, POINTER<br>from comtypes import CLSCTX_ALL<br>import pyautogui</p>
+<h3 id="Code-for-the-client-is-shown-below"><a href="#Code-for-the-client-is-shown-below" class="headerlink" title="Code for the client is shown below."></a>Code for the client is shown below.</h3><p>import socket<br>import subprocess<br>import argparse<br>from math import *<br>import multiprocessing<br>import struct<br>import os<br>import sys<br>import re<br>from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume<br>from ctypes import  cast, POINTER<br>from comtypes import CLSCTX_ALL<br>import pyautogui</p>
 <p>def socket_client():</p>
 <p>&emsp;&emsp;if os.path.isfile(filepath):<br>&emsp;&emsp;&emsp;&emsp;fileinfo_size = struct.calcsize(‘128sl’)<br>&emsp;&emsp;&emsp;&emsp;fhead = struct.pack(‘128sl’, os.path.basename(filepath).encode(‘utf-8’), os.stat(filepath).st_size)<br>&emsp;&emsp;&emsp;&emsp;s.send(fhead)</p>
 <p>&emsp;&emsp;&emsp;&emsp;# send file to the server<br>&emsp;&emsp;&emsp;&emsp;fp = open(filepath, ‘rb’)<br>&emsp;&emsp;&emsp;&emsp;while 1:<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;data = fp.read(1024)<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;if not data:<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;print (‘{0} file send over…’.format(os.path.basename(filepath)))<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;break<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;s.send(data)</p>
